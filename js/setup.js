@@ -17,19 +17,23 @@ var getRandomIntInGap = function (min, max) {
 
 // создание объекта мага
 var generateWizard = function () {
-  var wizard = {
+  return {
     name: firstNames[getRandomIntInGap(0, firstNames.length - 1)] + ' ' + lastNames[getRandomIntInGap(0, lastNames.length - 1)],
     coatColor: coatColors[getRandomIntInGap(0, coatColors.length - 1)],
     eyesColor: eyesColors[getRandomIntInGap(0, eyesColors.length - 1)]
   };
-  return wizard;
 };
 
 // создание массива объектов магов
-var wizards = [];
-for (var i = 0; i < 4; i++) {
-  wizards[i] = generateWizard();
-}
+var createWizards = function () {
+  var wizards = [];
+  for (var i = 0; i < 4; i++) {
+    wizards[i] = generateWizard();
+  }
+  return wizards;
+};
+
+var wizards = createWizards();
 
 // добавление свойств объекта мага шаблону
 var renderWizard = function (wizard) {
@@ -42,7 +46,7 @@ var renderWizard = function (wizard) {
 
 // отрисовка магов
 var fragment = document.createDocumentFragment();
-for (i = 0; i < wizards.length; i++) {
+for (var i = 0; i < wizards.length; i++) {
   fragment.appendChild(renderWizard(wizards[i]));
 }
 
